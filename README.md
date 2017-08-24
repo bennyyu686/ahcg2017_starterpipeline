@@ -1,6 +1,5 @@
 # Hannah Hatchell
-Master's of Bioinformatics
-Georgia Institute of Technology
+Master's of Bioinformatics, Georgia Institute of Technology
 
 # ahcg_pipeline
 Variant calling pipeline for genomic data analysis

@@ -4,6 +4,10 @@ Master's of Bioinformatics, Georgia Institute of Technology
 # ahcg_pipeline
 Variant calling pipeline for genomic data analysis
 
+## **Test Run**  
+[Development and validation of a clinical cancer genomic profiling test based on massively parallel DNA sequencing](https://www.nature.com/nbt/journal/v31/n11/full/nbt.2696.html#methods)
+Testing standard variant calling pipeline to accomodate for liquid biopsy-like data processing.
+
 ## Requirements
 
 1. [Python3 - version 3.4.1](https://www.python.org/download/releases/3.4.1/)

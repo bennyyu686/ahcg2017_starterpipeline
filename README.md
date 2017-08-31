@@ -6,7 +6,10 @@ Variant calling pipeline for genomic data analysis
 
 ## **Test Run**  
 [Development and validation of a clinical cancer genomic profiling test based on massively parallel DNA sequencing](https://www.nature.com/nbt/journal/v31/n11/full/nbt.2696.html#methods)
-Testing standard variant calling pipeline to accomodate for liquid biopsy-like data processing.
+Testing standard variant calling pipeline to accomodate for liquid biopsy-like data processing.  
+
+For data accession click [here](https://www.ncbi.nlm.nih.gov/sra/?term=SRP028580)
+
 
 ## Requirements
 

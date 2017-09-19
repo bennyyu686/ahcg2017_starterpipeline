@@ -1,7 +1,12 @@
-# Hannah Hatchell
-Master's of Bioinformatics, Georgia Institute of Technology
+## Hannah Hatchell
+Master's of Bioinformatics, Georgia Institute of Technology  
 
-# ahcg_pipeline
+**Mission Statement**  
+
+__Improving early cancer detection using a highly optimized pipeline for the specific detection of low frequency variants.__
+
+
+## ahcg_pipeline
 Variant calling pipeline for genomic data analysis
 
 ## **Test Run**  

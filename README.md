@@ -59,3 +59,22 @@ To access help use the following command:
 ```{sh}
 python3 ahcg_pipeline.py -h
 ```
+#### Virtual Box Commands
+
+Launch the virtual box on the Vannberg server
+
+```{sh}
+VBoxManage startvm "Ubuntu-64-DR-AHCG2017" --type headless
+```
+Files can be transferred from the server to the virtual box using the scp command
+
+```{sh}
+scp -r -P 10023 bin/pipeline/ vannberglab@localhost:~/
+```
+Once transferred, files on the virtual box can be accessed using ssh
+
+```{sh}
+ssh vannberglab@localhost -p 10023
+```
+
+

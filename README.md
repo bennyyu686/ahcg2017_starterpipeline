@@ -76,5 +76,10 @@ Once transferred, files on the virtual box can be accessed using ssh
 ```{sh}
 ssh vannberglab@localhost -p 10023
 ```
+Power off the virtual box when finished
+
+```{sh}
+VBoxManage controlvm "Ubuntu-64-DR-AHCG2017" poweroff soft
+```
 
 

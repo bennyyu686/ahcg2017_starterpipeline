@@ -34,10 +34,16 @@ For data accession click [here](https://www.ncbi.nlm.nih.gov/sra/?term=SRP028580
 3. [Bowtie2 - version 2.2.9](https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.2.9/)
 4. [Picard tools - version 2.6.0](https://github.com/broadinstitute/picard/releases/download/2.6.0/picard.jar)
 5. [GATK - version 3.4](https://software.broadinstitute.org/gatk/download/)
+6. [SamTools - version 1.6](https://downloads.sourceforge.net/project/samtools/samtools/1.6/samtools-1.6.tar.bz2?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fsamtools%2F&ts=1510018121&use_mirror=phoenixnap)
+7. [Control-FREEC - version 11.0](https://github.com/BoevaLab/FREEC/archive)
+8. [R - version 3.3.2](https://cran.cnr.berkeley.edu/)
 
 #### Reference genome
 
 Reference genomes can be downloaded from [Illumina iGenomes](http://support.illumina.com/sequencing/sequencing_software/igenome.html)
+```{sh}
+wget ftp://igenome:G3nom3s4u@ussd-ftp.illumina.com/Homo_sapiens/NCBI/GRCh38/Homo_sapiens_NCBI_GRCh38.tar.gz
+```
 
 #### Test data
 
@@ -59,13 +65,29 @@ To access help use the following command:
 ```{sh}
 python3 ahcg_pipeline.py -h
 ```
-#### Virtual Box Commands
+## Virtual Box Commands
+
+#### Virtual Box Implementation
+
+Verify the name of the virtual box after downloading
+
+```{sh}
+VBoxManage list vms
+```
 
 Launch the virtual box on the Vannberg server
 
 ```{sh}
 VBoxManage startvm "Ubuntu-64-DR-AHCG2017" --type headless
 ```
+
+Power off the virtual box when finished
+
+```{sh}
+VBoxManage controlvm "Ubuntu-64-DR-AHCG2017" poweroff soft
+```
+
+#### Copying Files to Virtual Box
 Files can be transferred from the server to the virtual box using the scp command
 
 ```{sh}
@@ -76,10 +98,17 @@ Once transferred, files on the virtual box can be accessed using ssh
 ```{sh}
 ssh vannberglab@localhost -p 10023
 ```
-Power off the virtual box when finished
+
+#### Adjusting Virtual Box Settings 
+
+Cloning the disk
 
 ```{sh}
-VBoxManage controlvm "Ubuntu-64-DR-AHCG2017" poweroff soft
+$ vboxmanage clonehd Ubuntu-64-DR-AHCG2017-p10025-disk001.vmdk Ubuntu-64-DR-AHCG2017.vdi --format vdi
 ```
 
+Increasing disk space
 
+```{sh}
+$  vboxmanage modifyhd Ubuntu-64-DR-AHCG2017.vdi --resize 120000
+```

@@ -59,7 +59,7 @@ head -100000 NIST7035_TAAGGCGA_L001_R2_001.fastq > test_r2.fastq
 To access help use the following command:
 
 ```{sh}
-python3 ahcg_pipeline.py -h
+python3 ahcg_pipeline.v1.0.7.py -h
 ```
 
 ## Pipeline Test Run 
@@ -71,6 +71,7 @@ The config file requires paths to each of the tools used in the pipeline. The "f
 > inputFormat: format of mateFile (SAM, BAM, etc)
 > mateOrientation: the rientation of reads in mateFile. 0 - single ends. RF - Illumina mate-pairs. FR - Illumina paired-ends. FF - SOLiD mate-pairs.
 
+```{sh}
 [data]
 inputfiles      = /data2/AHCG2017FALL/data4/SRR2530742_1.fastq,/data2/AHCG2017FALL/data4/SRR2530742_2.fastq
 sraid           = SRR2530742
@@ -100,6 +101,7 @@ trimmomatic     = /data2/AHCG2017FALL/bin/Trimmomatic-0.36/trimmomatic-0.36.jar
 mateFile        = /data2/AHCG2017FALL/output4/SRR2530741_1_trimmed_final.bam
 inputFormat     = BAM
 mateOrientation = FR
+```
 
 #### Building the Directory Structure
 
@@ -109,7 +111,7 @@ mkdir -p data/reads data/reference data/adapters output
 #### Example of Execution Command
 
 ```{sh}
-./ahcg_pipeline_v1.0.7.py -c config_file.txt
+./ahcg_pipeline.v1.0.7.py -c config_file.txt
 ```
 
 ## Virtual Box Commands

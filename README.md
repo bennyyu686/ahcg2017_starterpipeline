@@ -18,12 +18,8 @@ Cancer therapeutics are most effective when the disease is treated during is ear
 
 2. [Circulating Tumor DNA Mutation Profiling by Targeted Next Generation Sequencing Provides Guidance for Personalized Treatments in Multiple Cancer Types](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5428730/)
 
-## ahcg_pipeline  
-Variant calling pipeline for genomic data analysis  
-
-#### **Test Run**  
-[Development and validation of a clinical cancer genomic profiling test based on massively parallel DNA sequencing](https://www.nature.com/nbt/journal/v31/n11/full/nbt.2696.html#methods)
-Testing standard variant calling pipeline to accomodate for liquid biopsy-like data processing.  
+## AHCG_Pipeline  
+Variant calling pipeline for genomic data analysis.
 
 For data accession click [here](https://www.ncbi.nlm.nih.gov/sra/?term=SRP028580)
 
@@ -38,7 +34,7 @@ For data accession click [here](https://www.ncbi.nlm.nih.gov/sra/?term=SRP028580
 7. [Control-FREEC - version 11.0](https://github.com/BoevaLab/FREEC/archive)
 8. [R - version 3.3.2](https://cran.cnr.berkeley.edu/)
 
-#### Reference genome
+#### Reference Genome
 
 Reference genomes can be downloaded from [Illumina iGenomes](http://support.illumina.com/sequencing/sequencing_software/igenome.html)
 ```{sh}
@@ -65,6 +61,57 @@ To access help use the following command:
 ```{sh}
 python3 ahcg_pipeline.py -h
 ```
+
+## Pipeline Test Run 
+
+#### Example Config File
+
+The config file requires paths to each of the tools used in the pipeline. The "freec-control" section at the bottom is an optional section for the ControlFreec parameters:
+> mateFile: path to control file
+> inputFormat: format of mateFile (SAM, BAM, etc)
+> mateOrientation: the rientation of reads in mateFile. 0 - single ends. RF - Illumina mate-pairs. FR - Illumina paired-ends. FF - SOLiD mate-pairs.
+
+[data]
+inputfiles      = /data2/AHCG2017FALL/data4/SRR2530742_1.fastq,/data2/AHCG2017FALL/data4/SRR2530742_2.fastq
+sraid           = SRR2530742
+geneset         = /data2/AHCG2017FALL/guardant360/guardant360.refGene_hg38.genes.bed
+outputdir       = /data2/AHCG2017FALL/output5
+
+adapters        = /data2/AHCG2017FALL/bin/Trimmomatic-0.36/adapters/NexteraPE-PE.fa
+chrlenfile      = /data2/AHCG2017FALL/reference_genome/chromosomeSizes.txt
+chrfiles        = /data2/AHCG2017FALL/reference_genome/chroms/
+dbsnp           = /data2/AHCG2017FALL/reference_genome/GATKResourceBundle/dbsnp_146.hg38.vcf.gz
+index           = /data2/AHCG2017FALL/reference_genome/Bowtie2Index/genome
+reference       = /data2/AHCG2017FALL/reference_genome/genome.fa
+
+[tools]
+assesssig       = /data2/AHCG2017FALL/bin/FREEC/scripts/assess_significance.R
+bowtie2         = /data2/AHCG2017FALL/bin/bowtie2-2.2.9/bowtie2
+fastq-dump      = /data2/AHCG2017FALL/bin/sratoolkit/bin/fastq-dump
+freec           = /data2/AHCG2017FALL/bin/FREEC/src/freec
+gatk            = /data2/AHCG2017FALL/bin/GenomeAnalysisTK-3.8-0-ge9d806836/GenomeAnalysisTK.jar
+java            = /data2/AHCG2017FALL/bin/java-1.8/bin/java
+makegraph       = /data2/AHCG2017FALL/bin/FREEC/scripts/makeGraph.R
+picard          = /data2/AHCG2017FALL/bin/picard/picard.jar
+samtools        = /data2/AHCG2017FALL/bin/samtools-1.5/samtools
+trimmomatic     = /data2/AHCG2017FALL/bin/Trimmomatic-0.36/trimmomatic-0.36.jar
+
+[freec-control]
+mateFile        = /data2/AHCG2017FALL/output4/SRR2530741_1_trimmed_final.bam
+inputFormat     = BAM
+mateOrientation = FR
+
+#### Building the Directory Structure
+
+```{sh}
+mkdir -p data/reads data/reference data/adapters output
+```
+#### Example of Execution Command
+
+```{sh}
+./ahcg_pipeline_v1.0.7.py -c config_file.txt
+```
+
 ## Virtual Box Commands
 
 #### Virtual Box Implementation
@@ -104,11 +151,11 @@ ssh vannberglab@localhost -p 10023
 Cloning the disk
 
 ```{sh}
-$ vboxmanage clonehd Ubuntu-64-DR-AHCG2017-p10025-disk001.vmdk Ubuntu-64-DR-AHCG2017.vdi --format vdi
+vboxmanage clonehd Ubuntu-64-DR-AHCG2017-p10025-disk001.vmdk Ubuntu-64-DR-AHCG2017.vdi --format vdi
 ```
 
 Increasing disk space
 
 ```{sh}
-$  vboxmanage modifyhd Ubuntu-64-DR-AHCG2017.vdi --resize 120000
+vboxmanage modifyhd Ubuntu-64-DR_2.vdi --resize 120000
 ```

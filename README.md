@@ -66,7 +66,9 @@ python3 ahcg_pipeline.v1.0.7.py -h
 
 #### Example Config File
 
-The config file requires paths to each of the tools used in the pipeline. The "freec-control" section at the bottom is an optional section for the ControlFreec parameters:
+The config file requires paths to each of the tools used in the pipeline. The format is shown below; all the options are paths to the corresponding tools except the inputfiles option, which requires a list of paired end read files (comma sparated).
+
+The "freec-control" section at the bottom is an optional section for the ControlFreec parameters:
 > mateFile: path to control file  
 > inputFormat: format of mateFile (SAM, BAM, etc)  
 > mateOrientation: the rientation of reads in mateFile. 0 - single ends. RF - Illumina mate-pairs. FR - Illumina paired-ends. FF - SOLiD mate-pairs.  
